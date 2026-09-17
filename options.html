@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Site Blocker Settings</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; padding: 14px; width: 320px; background: #ffffff; color: #18181b; margin: 0; }
+    h3 { margin: 0 0 10px 0; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #71717a; }
+    .card { background: #f4f4f5; padding: 12px; border-radius: 8px; margin-bottom: 12px; border: 1px solid #e4e4e7; }
+    
+    button { padding: 8px 10px; font-weight: 600; border-radius: 6px; border: 1px solid #d4d4d8; cursor: pointer; font-size: 12px; transition: background 0.1s, border-color 0.1s; }
+    
+    .btn-primary { background: #18181b; color: #ffffff; border-color: #18181b; }
+    .btn-primary:hover { background: #3f3f46; border-color: #3f3f46; }
+    .btn-primary:active { background: #52525b; border-color: #52525b; }
+    
+    .btn-secondary { background: #ffffff; color: #18181b; border-color: #d4d4d8; width: 100%; margin-top: 4px; }
+    .btn-secondary:hover { background: #e4e4e7; border-color: #a1a1aa; }
+    .btn-secondary:active { background: #d4d4d8; border-color: #71717a; }
+    
+    .input-row { display: flex; gap: 6px; margin-bottom: 8px; align-items: center; }
+    input[type="text"], select { flex: 1; padding: 6px 8px; border-radius: 6px; border: 1px solid #d4d4d8; background: #ffffff; color: #18181b; font-size: 12px; box-sizing: border-box; cursor: pointer; }
+    input:focus, select:focus { outline: none; border-color: #18181b; }
+    
+    .item-list { display: flex; flex-direction: column; gap: 6px; max-height: 140px; overflow-y: auto; }
+    .list-item { background: #ffffff; padding: 6px 10px; border-radius: 6px; border: 1px solid #e4e4e7; display: flex; justify-content: space-between; align-items: center; font-size: 12px; }
+    .del-btn { background: transparent; color: #a1a1aa; border: none; cursor: pointer; font-weight: bold; font-size: 14px; padding: 0 4px; flex: none; }
+    .del-btn:hover { color: #18181b; }
+    
+    #status { color: #27272a; font-size: 11px; text-align: center; height: 14px; margin-top: 8px; font-weight: 500; }
+  </style>
+</head>
+<body>
+  <!-- Blocked Sites List -->
+  <div class="card">
+    <h3>Blocked Websites</h3>
+    <div class="input-row">
+      <input type="text" id="siteInput" placeholder="e.g. reddit.com">
+      <button id="addSiteBtn" class="btn-primary" style="flex:none; width: 60px;">Add</button>
+    </div>
+    <div id="sitesList" class="item-list"></div>
+  </div>
+
+  <!-- Block Schedules List -->
+  <div class="card">
+    <h3>Active Time Windows</h3>
+    <div class="input-row">
+      <select id="startTime"></select>
+      <span style="font-size:11px; color:#71717a;">to</span>
+      <select id="endTime"></select>
+      <button id="addScheduleBtn" class="btn-primary" style="flex:none; width: 60px;">Add</button>
+    </div>
+    <div id="schedulesList" class="item-list"></div>
+  </div>
+
+  <!-- Bottom Actions -->
+  <button id="resetBlockBtn" class="btn-secondary">Re-Lock Sites</button>
+
+  <script src="options.js"></script>
+</body>
+</html>

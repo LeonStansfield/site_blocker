@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Site Blocker</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; display: grid; place-content: center; height: 100vh; margin: 0; background: #ffffff; color: #18181b; }
+    .card { background: #f4f4f5; padding: 2rem; border-radius: 12px; text-align: center; box-shadow: 0 4px 16px rgba(0,0,0,0.06); border: 1px solid #e4e4e7; width: 320px; }
+    h2 { margin-top: 0; font-size: 20px; color: #18181b; }
+    p { font-size: 14px; color: #71717a; margin-bottom: 20px; }
+    .hidden { display: none !important; }
+
+    /* Stroop Puzzle */
+    #stroop-word { font-size: 32px; font-weight: bold; margin: 20px 0; }
+    .btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .color-btn { padding: 12px; font-weight: bold; border-radius: 6px; border: none; cursor: pointer; color: white; }
+
+    /* Memory Grid Puzzle */
+    .memory-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 20px 0; }
+    .grid-tile { width: 80px; height: 80px; background: #e4e4e7; border-radius: 8px; border: 2px solid #d4d4d8; cursor: pointer; transition: background 0.1s; }
+    .grid-tile.active { background: #18181b !important; border-color: #000000; }
+
+    /* Hold Timer Puzzle */
+    .progress-wrapper { width: 100%; background: #e4e4e7; height: 16px; border-radius: 8px; overflow: hidden; margin: 20px 0; }
+    #progress-bar { width: 0%; height: 100%; background: #27272a; transition: width 0.1s linear; }
+    #hold-btn { width: 100%; padding: 14px; background: #27272a; border: none; color: white; font-weight: bold; font-size: 16px; border-radius: 6px; cursor: pointer; user-select: none; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2 id="puzzle-title">Site Blocker</h2>
+    <p id="puzzle-desc">Solve to unlock site access for 1 hour</p>
+
+    <!-- 1. STROOP TEST -->
+    <div id="stroop-container" class="hidden">
+      <div id="stroop-round" style="font-size: 12px; color: #71717a;">Round 1 of 5</div>
+      <div id="stroop-word">WORD</div>
+      <div class="btn-grid" id="stroop-buttons"></div>
+    </div>
+
+    <!-- 2. MEMORY GRID -->
+    <div id="memory-container" class="hidden">
+      <div id="memory-status" style="font-size: 12px; color: #71717a;">Watch the pattern...</div>
+      <div class="memory-grid" id="memory-grid"></div>
+    </div>
+
+    <!-- 3. HOLD TIMER -->
+    <div id="timer-container" class="hidden">
+      <div class="progress-wrapper">
+        <div id="progress-bar"></div>
+      </div>
+      <button id="hold-btn">Press & Hold (15s)</button>
+    </div>
+  </div>
+
+  <script src="puzzle.js"></script>
+</body>
+</html>
