@@ -5,7 +5,7 @@
   "permissions": ["storage"],
   "browser_specific_settings": {
     "gecko": {
-      "id": "news-blocker@local",
+      "id": "site-blocker@emeastansfie",
       "data_collection_permissions": {
         "required": ["none"]
       }
