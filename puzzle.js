@@ -1,12 +1,22 @@
 // Function called when any puzzle is successfully completed
 function unlockAccess() {
-  const unlockedUntil = Date.now() + (60 * 60 * 1000); // 1 Hour Unlock
-  chrome.storage.local.set({ unlockedUntil }, () => {
-    const params = new URLSearchParams(window.location.search);
-    const target = params.get("target");
-    if (target) {
+  const params = new URLSearchParams(window.location.search);
+  const target = params.get("target");
+  if (!target) return;
+
+  let targetHost;
+  try {
+    targetHost = new URL(target).hostname.toLowerCase();
+  } catch (error) {
+    return;
+  }
+
+  chrome.storage.local.get(['unlockedDomains'], (data) => {
+    const unlockedDomains = data.unlockedDomains || {};
+    unlockedDomains[targetHost] = Date.now() + (60 * 60 * 1000);
+    chrome.storage.local.set({ unlockedDomains }, () => {
       window.location.replace(target);
-    }
+    });
   });
 }
 

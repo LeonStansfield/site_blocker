@@ -135,5 +135,11 @@ addScheduleBtn.addEventListener('click', () => {
   });
 });
 
+resetBlockBtn.addEventListener('click', () => {
+  chrome.storage.local.remove(['unlockedDomains', 'unlockedUntil'], () => {
+    showStatus('Sites re-locked.');
+  });
+});
+
 populateTimeDropdowns();
 loadAll();

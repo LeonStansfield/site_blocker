@@ -1,10 +1,10 @@
 (function() {
   const currentHost = window.location.hostname.toLowerCase();
 
-  chrome.storage.local.get(['domains', 'schedules', 'unlockedUntil'], (data) => {
+  chrome.storage.local.get(['domains', 'schedules', 'unlockedDomains'], (data) => {
     const domains = data.domains || ['bbc.com', 'bbc.co.uk', 'x.com', 'linkedin.com', 'theguardian.com', 'cnn.com', 'reddit.com'];
     const schedules = data.schedules || [{ startTime: "11:00", endTime: "03:00" }];
-    const unlockedUntil = data.unlockedUntil || 0;
+    const unlockedDomains = data.unlockedDomains || {};
 
     const now = new Date();
     const currentMins = now.getHours() * 60 + now.getMinutes();
@@ -39,7 +39,7 @@
     });
 
     // 4. Check if puzzle unlock timer is active
-    const isUnlocked = Date.now() < unlockedUntil;
+    const isUnlocked = Date.now() < (unlockedDomains[currentHost] || 0);
 
     // Trigger redirection if site is listed, schedule is active, and puzzle isn't unlocked
     if (isDomainListed && isAnyScheduleActive && !isUnlocked) {
